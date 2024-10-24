@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/script.js",
+      "PackagePath": "staticwebassets/script.js"
+    },
+    {
+      "Id": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/styles.css",
+      "PackagePath": "staticwebassets/styles.css"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.TaskPlanner.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.TaskPlanner.props",
+      "PackagePath": "build\\TaskPlanner.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.TaskPlanner.props",
+      "PackagePath": "buildMultiTargeting\\TaskPlanner.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.TaskPlanner.props",
+      "PackagePath": "buildTransitive\\TaskPlanner.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

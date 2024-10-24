@@ -34,3 +34,4 @@
 /Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/obj/Debug/net8.0/TaskPlanner.pdb
 /Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/obj/Debug/net8.0/TaskPlanner.genruntimeconfig.cache
 /Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/obj/Debug/net8.0/ref/TaskPlanner.dll
+/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/bin/Debug/net8.0/TaskPlanner.staticwebassets.runtime.json

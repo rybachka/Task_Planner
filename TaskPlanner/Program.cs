@@ -16,6 +16,8 @@ builder.Services.AddTransient<IDbConnection>((sp) =>
 builder.Services.AddTransient<ProjectRepository>();
 var app = builder.Build();
 
+app.UseStaticFiles();
+app.UseRouting();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

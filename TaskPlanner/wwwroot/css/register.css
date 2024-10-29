@@ -1,0 +1,78 @@
+/* Background gradient */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #3a5dab, #7f5cd6);
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    background: linear-gradient(to Center, #a675ff, #5b99ff);
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    
+}
+
+/* Main content styles */
+main {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+input.form-control {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    background-color: #5b99ff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #a675ff;
+}
+
+/* Additional styles */
+.register-link {
+    margin-top: 15px;
+    text-align: center;
+    color: #f0a6ff;
+}
+
+h1, h2, .tagline {
+    text-align: center;
+    margin: 0;
+}
+
+.tagline {
+    font-style: italic;
+    font-size: 1.1em;
+    color: #f0a6ff;
+    margin-top: 5px;
+}

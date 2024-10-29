@@ -1,0 +1,79 @@
+/* Background gradient */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #3a5dab, #7f5cd6);
+    color: #fff;
+    height: 100vh; /* Full screen height */
+    display: flex;
+    justify-content: center; /* Centers the form horizontally */
+    align-items: center; /* Centers the form vertically */
+}
+
+/* Header styles */
+header {
+    background: linear-gradient(to Center, #a675ff, #5b99ff);
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    
+}
+
+/* Main content styles */
+main {
+    width: 100%;
+    max-width: 400px; /* Sets a maximum width for the form container */
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center; /* Centers the headings inside the form */
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left; /* Aligns the form fields to the left within the container */
+}
+
+input.form-control {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    width: 100%; /* Full width within the form group */
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    background-color: #5b99ff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Full width button */
+}
+
+.btn-primary:hover {
+    background-color: #a675ff;
+}
+
+/* Register link styles */
+.register-link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+h1, h2 {
+    text-align: center;
+    margin: 0;
+}
+
+/* Italicize only the tagline */
+.tagline {
+    font-style: italic;
+    font-size: 1.1em;
+    color: #f0a6ff;
+    margin-top: 5px;
+}

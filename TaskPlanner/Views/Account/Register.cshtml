@@ -1,37 +1,52 @@
 @model RegisterViewModel
 
-<form asp-action="Register" method="post">
-    <div>
-        <label asp-for="Email" for="Email">Email</label>
-        <input asp-for="Email" id="Email" name="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Password" for="Password">Password</label>
-        <input asp-for="Password" id="Password" name="Password" type="password" class="form-control" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="ConfirmPassword" for="ConfirmPassword">Confirm Password</label>
-        <input asp-for="ConfirmPassword" id="ConfirmPassword" name="ConfirmPassword" type="password" class="form-control" />
-        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="~/css/login.css">
+</head>
+<body>
+    <main>
+        <h1>ClarityHub</h1>
+        <p class="tagline">Bringing Clarity to Your Day, One Task at a Time!</p>
+        <h2>Create Account</h2>
+        <form asp-action="Register" method="post">
+            <div class="form-group">
+                <label asp-for="Email">Email address:</label>
+                <input asp-for="Email" id="Email" name="Email" class="form-control" placeholder="example@mail.com" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Password:</label>
+                <input asp-for="Password" id="Password" name="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword">Confirm password:</label>
+                <input asp-for="ConfirmPassword" id="ConfirmPassword" name="ConfirmPassword" type="password" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+            <p class="register-link">Already have an account? <a href="/Account/Login">Login here</a></p>
+        </form>
+    </main>
+    @section Scripts {
+        <script src="~/lib/jquery/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-@section Scripts {
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                console.log("jQuery is working");
 
-    <script>
-        $(document).ready(function () {
-            console.log("jQuery is working");
-
-            if ($.validator) {
-                console.log("jQuery Validation is loaded");
-                $("form").validate().form(); // Manual validation trigger
-            }
-        });
-    </script>
-}
+                if ($.validator) {
+                    console.log("jQuery Validation is loaded");
+                    $("form").validate().form(); // Manual validation trigger
+                }
+            });
+        </script>
+    }
+</body>
+</html>

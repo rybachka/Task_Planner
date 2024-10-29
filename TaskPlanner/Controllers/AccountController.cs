@@ -37,7 +37,7 @@ public class AccountController : Controller
             {
                 Console.WriteLine("Rejestracja zakończona sukcesem");
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                return Redirect("http://localhost:5178/index.html");;
+                return RedirectToAction("Index", "Home");
             }
 
             foreach (var error in result.Errors)
@@ -79,7 +79,8 @@ public class AccountController : Controller
             if (result.Succeeded)
             {
                 Console.WriteLine("Logowanie zakończone sukcesem");
-                return Redirect("http://localhost:5178/index.html");
+                return RedirectToAction("Index", "Home");
+
             }
 
             Console.WriteLine("Błąd logowania: Nieprawidłowe dane logowania");

@@ -5,26 +5,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="~/css/login.css"> <!-- Link to CSS -->
 </head>
 <body>
-    <form asp-action="Login" method="post">
-        <div>
-            <label asp-for="Email"></label>
-            <input asp-for="Email" id="Email" name="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-        <div>
-            <label asp-for="Password"></label>
-            <input asp-for="Password" id="Password" name="Password" type="password" class="form-control" />
-            <span asp-validation-for="Password" class="text-danger"></span>
-        </div>
-        <div>
-            <label>
-                <input asp-for="RememberMe" id="RememberMe" name="RememberMe" type="checkbox" /> Zapamiętaj mnie
-            </label>
-        </div>
-        <button type="submit" class="btn btn-primary">Zaloguj</button>
-    </form>
+    <main>
+        <h1>ClarityHub</h1>
+        <p class="tagline">Bringing Clarity to Your Day, One Task at a Time!</p>
+        <h2>Log in</h2>
+        <form asp-action="Login" method="post">
+            <div class="form-group">
+                <label asp-for="Email">Email address:</label>
+                <input asp-for="Email" id="Email" name="Email" class="form-control" placeholder="example@mail.com" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Password:</label>
+                <input asp-for="Password" id="Password" name="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input asp-for="RememberMe" id="RememberMe" name="RememberMe" type="checkbox" /> Zapamiętaj mnie
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Zaloguj</button>
+            <p class="register-link">Don't have an account yet? <a href="/Account/Register">Then register</a></p>
+        </form>
+    </main>
 
     @section Scripts {
         <script src="~/lib/jquery/jquery.min.js"></script>

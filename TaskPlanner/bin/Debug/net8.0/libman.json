@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "unpkg",
+      "library": "jquery-validation@1.21.0",
+      "destination": "wwwroot/lib/jquery-validation"
+    }
+  ]
+}

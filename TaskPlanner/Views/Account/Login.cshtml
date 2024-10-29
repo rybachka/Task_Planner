@@ -1,0 +1,36 @@
+@model LoginViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <form asp-action="Login" method="post">
+        <div>
+            <label asp-for="Email"></label>
+            <input asp-for="Email" id="Email" name="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Password"></label>
+            <input asp-for="Password" id="Password" name="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div>
+            <label>
+                <input asp-for="RememberMe" id="RememberMe" name="RememberMe" type="checkbox" /> Zapamiętaj mnie
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Zaloguj</button>
+    </form>
+
+    @section Scripts {
+        <script src="~/lib/jquery/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
+</html>

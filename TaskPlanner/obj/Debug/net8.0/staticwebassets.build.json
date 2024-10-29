@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AXAWN+7oxtrj3aVvljaC/Ha+ZMfnpR8uVISGV/Xz4w8=",
+  "Hash": "JnTgxTxCVTHiGmpvVAVOXhR6m5Faflt5woBVgBmo4U0=",
   "Source": "TaskPlanner",
   "BasePath": "_content/TaskPlanner",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/css/home.css",
+      "SourceId": "TaskPlanner",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/",
+      "BasePath": "_content/TaskPlanner",
+      "RelativePath": "css/home.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/home.css"
+    },
     {
       "Identity": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/index.html",
       "SourceId": "TaskPlanner",

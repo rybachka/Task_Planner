@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/css/home.css",
+      "PackagePath": "staticwebassets/css/home.css"
+    },
+    {
       "Id": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/index.html",
       "PackagePath": "staticwebassets/index.html"
     },

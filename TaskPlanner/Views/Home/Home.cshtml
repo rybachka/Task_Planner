@@ -1,3 +1,11 @@
+@{
+    bool isAuthenticated = User?.Identity?.IsAuthenticated == true;
+    string userEmail = User?.Identity?.Name ?? "Guest"; // Jeśli Name jest null, użyje "Guest"
+}
+@{
+    Layout = "_Layout";
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +15,7 @@
     <link rel="stylesheet" href="~/css/home.css">
 </head>
 <body>
-    <header>
+  @* <!-- <header>
     <nav>
         <a href="/Home">Home</a>
         <a href="/Projects">Projects</a>
@@ -16,11 +24,23 @@
         <a href="/Contacts">Contacts</a>
         <a href="/Account/Login" class="profile-icon">👤</a> <!-- Link do logowania -->
     </nav>
-    </header>
+    </header>*@
 
     <main>
         <h1>Welcome to <span class="highlight">ClarityHub</span></h1>
         <p class="tagline">Bringing Clarity to Your Day, One Task at a Time!</p>
+
+        <!-- Sprawdzenie stanu zalogowania użytkownika -->
+        <p style="text-align: center; color: #d48ac5; font-size: 1.1em;">
+            @if (isAuthenticated)
+            {
+                <span>You are now logged in as @userEmail</span>
+            }
+            else
+            {
+                <span>You are not logged in</span>
+            }
+        </p>
         
         <div class="content">
             <div class="card">

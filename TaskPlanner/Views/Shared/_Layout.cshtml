@@ -1,0 +1,163 @@
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ClarityHub</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        /* Styl dla kontenera przycisków */
+        #profile-button, #logout-button {
+            display: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 120px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            position: absolute;
+            right: 0;
+        }
+
+        /* Styl dla przycisku "My profile" */
+        #profile-button {
+            background-color: #008080; /* Turkusowy */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Styl dla przycisku "Log out" poniżej "My profile" */
+        #logout-button {
+            background-color: #b22222; /* Ciemnoczerwony */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Efekt hover dla przycisków */
+        #profile-button:hover {
+            background-color: #006666; /* Ciemniejszy turkusowy */
+        }
+        
+        #logout-button:hover {
+            background-color: #8b0000; /* Ciemniejszy czerwony */
+        }
+
+        /* Styl dla nawigacji */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           /* background: linear-gradient(to right, #d291bc, #8da9f4);*/
+            padding: 10px 20px;
+            position: relative;
+        }
+
+        /* Styl dla elementów menu */
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        /* Styl dla ikony profilu */
+        .profile-icon {
+            font-size: 20px;
+            color: white;
+            margin-left: 15px;
+            cursor: pointer;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/Home">Home</a>
+            <a href="/Projects">Projects</a>
+            <a href="/Tasks">Tasks</a>
+            <a href="/Calendar">Calendar</a>
+            <a href="/Contacts">Contacts</a>
+            
+            <!-- Ikona profilu -->
+            @if (HttpContextAccessor.HttpContext?.User?.Identity?.IsAuthenticated == true)
+            {
+                <div id="profile-icon" class="profile-icon" onclick="toggleProfileButton(event)">
+                    👤
+                </div>
+                <button id="profile-button" onclick="openProfile()">My profile</button>
+                <button id="logout-button" onclick="logout()">Log out</button>
+            }
+            else
+            {
+                <a href="/Account/Login" class="profile-icon">👤</a>
+            }
+        </nav>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ClarityHub. All rights reserved.</p>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        function toggleProfileButton(event) {
+            event.stopPropagation(); // Zapobiega zamykaniu po kliknięciu
+            
+            var profileButton = document.getElementById("profile-button");
+            var logoutButton = document.getElementById("logout-button");
+            var profileIcon = document.getElementById("profile-icon");
+            
+            // Ustaw widoczność przycisków
+            if (profileButton.style.display === "none" || profileButton.style.display === "") {
+                profileButton.style.display = "block";
+                logoutButton.style.display = "block";
+
+                // Ustaw pozycję przycisków pod ikoną
+                var iconRect = profileIcon.getBoundingClientRect();
+                profileButton.style.top = iconRect.bottom + "px";
+                profileButton.style.left = iconRect.left + "px";
+
+                // Ustaw pozycję "Log out" bezpośrednio pod "My profile"
+                logoutButton.style.top = (iconRect.bottom + profileButton.offsetHeight + 5) + "px";
+                logoutButton.style.left = iconRect.left + "px";
+            } else {
+                profileButton.style.display = "none";
+                logoutButton.style.display = "none";
+            }
+        }
+
+        function openProfile() {
+            // Przekierowanie do strony profilu użytkownika
+            window.location.href = '/Account/Profile';
+        }
+
+        function logout() {
+            // Wylogowanie użytkownika i przekierowanie na stronę logowania
+            window.location.href = '/Account/Login';
+        }
+
+        // Ukrywanie przycisków profilu po kliknięciu poza ikoną
+        document.addEventListener("click", function(event) {
+            var profileButton = document.getElementById("profile-button");
+            var logoutButton = document.getElementById("logout-button");
+            var profileIcon = document.getElementById("profile-icon");
+
+            if (profileButton && profileButton.style.display === "block" && !profileIcon.contains(event.target) && !profileButton.contains(event.target) && !logoutButton.contains(event.target)) {
+                profileButton.style.display = "none";
+                logoutButton.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

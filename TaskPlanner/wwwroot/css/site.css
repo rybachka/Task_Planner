@@ -1,0 +1,41 @@
+/* site.css - style globalne */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #7b4397, #dc2430);
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4c4c6d;
+    padding: 10px;
+    text-align: center;
+    color: #f0f0f0;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Dodatkowe style dla elementów */
+.content {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.card {
+    width: 30%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}

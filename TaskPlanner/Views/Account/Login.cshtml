@@ -12,19 +12,25 @@
         <h1>ClarityHub</h1>
         <p class="tagline">Bringing Clarity to Your Day, One Task at a Time!</p>
         <h2>Log in</h2>
+
+        <!-- Wyświetlanie błędów walidacji ogólnych -->
+        <div class="error-summary">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+        
         <form asp-action="Login" method="post">
             <div class="form-group">
-                <label asp-for="Email">Email address:</label>
-                <input asp-for="Email" id="Email" name="Email" class="form-control" placeholder="example@mail.com" />
+                <label asp-for="Email" for="Email">Email address:</label>
+                <input asp-for="Email" id="Email" name="Email" class="form-control" placeholder="example@mail.com" autocomplete="email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password">Password:</label>
-                <input asp-for="Password" id="Password" name="Password" type="password" class="form-control" />
+                <label asp-for="Password" for="Password">Password:</label>
+                <input asp-for="Password" id="Password" name="Password" type="password" class="form-control" autocomplete="current-password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label>
+                <label for="RememberMe">
                     <input asp-for="RememberMe" id="RememberMe" name="RememberMe" type="checkbox" /> Zapamiętaj mnie
                 </label>
             </div>

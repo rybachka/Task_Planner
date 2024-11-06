@@ -77,3 +77,17 @@ h1, h2 {
     color: #f0a6ff;
     margin-top: 5px;
 }
+
+.error-summary {
+    border: 1px solid #ff4d4d;
+    background-color: #ffe6e6;
+    color: #ff4d4d;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+.text-danger {
+    color: #ff4d4d;
+}
+

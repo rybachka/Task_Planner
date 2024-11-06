@@ -27,9 +27,15 @@ public class AccountController : Controller
     {
         Console.WriteLine("Rozpoczęcie procesu rejestracji");
 
+        // Sprawdzenie, czy pola "Password" i "ConfirmPassword" są zgodne
+        if (model.Password != model.ConfirmPassword)
+        {
+            ModelState.AddModelError("ConfirmPassword", "Passwords do not match.");
+            Console.WriteLine("Błąd walidacji: Passwords do not match.");
+        }
+
         if (ModelState.IsValid)
         {
-            Console.WriteLine("ModelState jest poprawny");
             var user = new IdentityUser { UserName = model.Email, Email = model.Email };
             var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -46,17 +52,11 @@ public class AccountController : Controller
                 ModelState.AddModelError(string.Empty, error.Description);
             }
         }
-        else
-        {
-            Console.WriteLine("ModelState nie jest poprawny.");
-            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-            {
-                Console.WriteLine($"Błąd walidacji: {error.ErrorMessage}");
-            }
-        }
 
         return View(model);
     }
+
+
 
 
 
@@ -80,11 +80,12 @@ public class AccountController : Controller
             {
                 Console.WriteLine("Logowanie zakończone sukcesem");
                 return RedirectToAction("Index", "Home");
-
             }
-
-            Console.WriteLine("Błąd logowania: Nieprawidłowe dane logowania");
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            else
+            {
+                Console.WriteLine("Błąd logowania: Nieprawidłowe dane logowania");
+                ModelState.AddModelError(string.Empty, "Invalid login attempt. Please check your email and password.");
+            }
         }
         else
         {
@@ -95,8 +96,10 @@ public class AccountController : Controller
             }
         }
 
+        // Jeśli coś poszło nie tak, zwracamy formularz z błędami
         return View(model);
     }
+
 
     [HttpPost]
     public async Task<IActionResult> Logout()

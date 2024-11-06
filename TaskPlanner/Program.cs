@@ -29,8 +29,10 @@ builder.Services.AddTransient<ProjectRepository>();
 
 // Dodanie widoków i plików statycznych
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
+
 
 // Dodanie plików statycznych i routingu
 app.UseStaticFiles();
@@ -46,9 +48,13 @@ if (app.Environment.IsDevelopment())
 app.UseAuthentication(); // Obsługa logowania
 app.UseHttpsRedirection();
 app.UseAuthorization();  // Obsługa autoryzacji
-
+app.MapRazorPages();
 app.MapControllers();
 app.MapDefaultControllerRoute();
+
+
+
+
 
 // Przykładowy kod do testowania
 var summaries = new[]

@@ -12,31 +12,39 @@
         <h1>ClarityHub</h1>
         <p class="tagline">Bringing Clarity to Your Day, One Task at a Time!</p>
         <h2>Create Account</h2>
+        
+        <!-- Wyświetlanie błędów walidacji -->
+        <div class="error-summary">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+        
         <form asp-action="Register" method="post">
             <div class="form-group">
-                <label asp-for="Email">Email address:</label>
-                <input asp-for="Email" id="Email" name="Email" class="form-control" placeholder="example@mail.com" />
+                <label asp-for="Email" for="Email">Email address:</label>
+                <input asp-for="Email" id="Email" name="Email" class="form-control" placeholder="example@mail.com" autocomplete="email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password">Password:</label>
-                <input asp-for="Password" id="Password" name="Password" type="password" class="form-control" />
+                <label asp-for="Password" for="Password">Password:</label>
+                <input asp-for="Password" id="Password" name="Password" type="password" class="form-control" autocomplete="new-password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmPassword">Confirm password:</label>
-                <input asp-for="ConfirmPassword" id="ConfirmPassword" name="ConfirmPassword" type="password" class="form-control" />
+                <label asp-for="ConfirmPassword" for="ConfirmPassword">Confirm password:</label>
+                <input asp-for="ConfirmPassword" id="ConfirmPassword" name="ConfirmPassword" type="password" class="form-control" autocomplete="new-password" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
             <p class="register-link">Already have an account? <a href="/Account/Login">Login here</a></p>
         </form>
     </main>
+    
     @section Scripts {
         <script src="~/lib/jquery/jquery.min.js"></script>
         <script src="~/lib/jquery-validation/jquery.validate.min.js"></script>
         <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-
+        <partial name="_ValidationScriptsPartial" />
+        
         <script>
             $(document).ready(function () {
                 console.log("jQuery is working");

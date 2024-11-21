@@ -3,6 +3,7 @@ using Npgsql;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TaskPlanner.Data;
+using TaskPlanner.Models; // Dodaj referencję do modelu ApplicationUser
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Konfiguracja Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+// Konfiguracja Identity z użyciem ApplicationUser
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
@@ -33,7 +34,6 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-
 // Dodanie plików statycznych i routingu
 app.UseStaticFiles();
 app.UseRouting();
@@ -51,10 +51,6 @@ app.UseAuthorization();  // Obsługa autoryzacji
 app.MapRazorPages();
 app.MapControllers();
 app.MapDefaultControllerRoute();
-
-
-
-
 
 // Przykładowy kod do testowania
 var summaries = new[]

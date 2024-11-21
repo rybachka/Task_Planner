@@ -1,18 +1,20 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using System.Threading.Tasks;
 using TaskPlanner.Models;
 
 public class AccountController : Controller
 {
-    private readonly UserManager<IdentityUser> _userManager;
-    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly ILogger<AccountController> _logger;
-    public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<AccountController> logger)
+
+    public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<AccountController> logger)
     {
         _userManager = userManager;
         _signInManager = signInManager;
-        _logger = logger;  // Wstrzykuj logger
+        _logger = logger;
     }
 
     [HttpGet]
@@ -21,13 +23,12 @@ public class AccountController : Controller
         return View();
     }
 
-
     [HttpPost]
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
         Console.WriteLine("Rozpoczęcie procesu rejestracji");
 
-        // Sprawdzenie, czy pola "Password" i "ConfirmPassword" są zgodne
+        // Check if Password and ConfirmPassword are the same
         if (model.Password != model.ConfirmPassword)
         {
             ModelState.AddModelError("ConfirmPassword", "Passwords do not match.");
@@ -36,7 +37,7 @@ public class AccountController : Controller
 
         if (ModelState.IsValid)
         {
-            var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
@@ -55,11 +56,6 @@ public class AccountController : Controller
 
         return View(model);
     }
-
-
-
-
-
 
     [HttpGet]
     public IActionResult Login()
@@ -96,15 +92,70 @@ public class AccountController : Controller
             }
         }
 
-        // Jeśli coś poszło nie tak, zwracamy formularz z błędami
         return View(model);
     }
-
 
     [HttpPost]
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
-        return RedirectToAction("index", "Home");
+        return RedirectToAction("Index", "Home");
+    }
+
+    [HttpGet]
+    public IActionResult Profile()
+    {
+        var user = _userManager.GetUserAsync(User).Result;
+
+        if (user == null)
+        {
+            Console.WriteLine("Użytkownik nie jest zalogowany.");
+            return RedirectToAction("Login", "Account");
+        }
+
+        var userProfile = new
+        {
+            FirstName = "Mariia", // Example data (add to ApplicationUser if you want to store it)
+            LastName = "Rybak",  // Example data
+            Email = user.Email,
+            ProfilePicturePath = user.ProfilePicturePath ?? "/uploads/default-profile.png"
+        };
+
+        return View(userProfile);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> UploadProfilePicture(IFormFile profilePicture)
+    {
+        if (profilePicture != null && profilePicture.Length > 0)
+        {
+            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+            if (!Directory.Exists(uploadsFolder))
+                Directory.CreateDirectory(uploadsFolder);
+
+            var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(profilePicture.FileName);
+            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await profilePicture.CopyToAsync(fileStream);
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                Console.WriteLine("Błąd: Użytkownik nie istnieje.");
+                return RedirectToAction("Login", "Account");
+            }
+
+            user.ProfilePicturePath = "/uploads/" + uniqueFileName;
+            await _userManager.UpdateAsync(user);
+
+            return RedirectToAction("Profile");
+        }
+
+        Console.WriteLine("Błąd: Nie wybrano pliku.");
+        return RedirectToAction("Profile");
     }
 }

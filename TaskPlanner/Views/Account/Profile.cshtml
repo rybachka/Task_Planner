@@ -1,0 +1,72 @@
+@model dynamic
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="~/css/login.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #3a5dab, #7f5cd6);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin: 50px auto;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .profile-container p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            background-size: cover; /* Dodano dla poprawnego wyświetlania */
+            border-radius: 50%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+   <div class="profile-container">
+        <!-- Zdjęcie profilowe -->
+        <div class="profile-picture" style="background-image: url('@Model.ProfilePicturePath');"></div>
+        <h1>Profile Information</h1>
+        <p><strong>First name:</strong> @Model.FirstName</p>
+        <p><strong>Last name:</strong> @Model.LastName</p>
+        <p><strong>Email address:</strong> @Model.Email</p>
+
+        <!-- Dla debugowania -->
+        <p>Profile Picture Path: @Model.ProfilePicturePath</p>
+
+        <!-- Formularz przesyłania zdjęcia -->
+        <form asp-action="UploadProfilePicture" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <label for="profilePicture">Upload a new profile picture:</label><br>
+            <input type="file" id="profilePicture" name="profilePicture" accept="image/*" /><br><br>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+</body>
+</html>

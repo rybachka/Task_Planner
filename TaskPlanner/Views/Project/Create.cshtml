@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a New Project</title>
+    <link rel="stylesheet" href="~/css/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        /* Kontener formularza */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+
+             background: linear-gradient(to bottom, #3a5dab, #5b3aae8a);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: auto; /* Pozwala na przewijanie, jeśli zawartość jest zbyt długa */
+            max-height: 80vh; /* Ogranicza wysokość formularza */
+            margin-top: 50px; /* Dodaje przestrzeń z góry */
+        }
+
+        /* Formularz */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Wyrównanie pól formularza do lewej */
+        }
+
+        /* Styl dla pól formularza */
+        input, textarea {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 7px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 97%;
+        }
+
+        /* Styl dla przycisków */
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* Zmienia kolor przycisku na hover */
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styl dla kontenera dynamicznych zadań */
+        #tasks-container {
+            margin-top: 10px;
+        }
+
+        /* Styl dla usuwania zadania */
+        .remove-task-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #ff4e4e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .remove-task-button:hover {
+            background-color: #ff9393;
+        }
+
+        .task {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #a58de0;
+             background: linear-gradient(to bottom, #a58de0, #ac8bff96);
+            border-radius: 8px;
+            width: 95%;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>Create a New Project</h1>
+        <form asp-action="Create" method="post">
+            <label for="Name">Project Name</label>
+            <input type="text" id="Name" name="Name" required>
+
+            <label for="Description">Description</label>
+            <textarea id="Description" name="Description"></textarea>
+
+            <label for="DueDate">Due Date</label>
+            <input type="date" id="DueDate" name="DueDate">
+
+            <h2>Tasks</h2>
+            <div id="tasks-container">
+                <!-- Kontener na dynamiczne zadania -->
+            </div>
+            <button type="button" id="add-task-button" class="btn btn-secondary">Add Task</button>
+
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </main>
+    <script>
+        $(document).ready(function () {
+            let taskIndex = 0;
+            $('#add-task-button').click(function () {
+                const taskHtml = `
+                    <div class="task">
+                        <h3>Task ${taskIndex + 1}</h3>
+                        <label for="Tasks[${taskIndex}].Name">Task Name</label>
+                        <input type="text" id="Tasks_${taskIndex}__Name" name="Tasks[${taskIndex}].Name" required>
+
+                        <label for="Tasks[${taskIndex}].Description">Description</label>
+                        <textarea id="Tasks_${taskIndex}__Description" name="Tasks[${taskIndex}].Description"></textarea>
+
+                        <label for="Tasks[${taskIndex}].DueDate">Due Date</label>
+                        <input type="date" id="Tasks_${taskIndex}__DueDate" name="Tasks[${taskIndex}].DueDate">
+
+                        <button type="button" class="remove-task-button">Remove Task</button>
+                    </div>
+                `;
+                $('#tasks-container').append(taskHtml);
+                taskIndex++;
+            });
+            $(document).on('click', '.remove-task-button', function () {
+                $(this).closest('.task').remove();
+            });
+        });
+    </script>
+</body>
+</html>

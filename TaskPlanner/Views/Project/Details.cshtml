@@ -1,0 +1,93 @@
+@model TaskPlanner.Models.Project
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="~/css/login.css">
+    <style>
+        .project-item {
+            text-align: left;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .project-details {
+            list-style: none;
+            padding: 0;
+        }
+        .project-details h2 {
+            text-align: center;
+        }
+        .btn-back {
+            display: inline-block;
+            margin-top: 15px;
+            color: #4a4a4a;
+            text-decoration: none;
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+        .btn-delete {
+            display: inline-block;
+            margin-top: 15px;
+            color: white;
+            background-color: red;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .task-item {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Project Details</h1>
+        </header>
+
+        <div class="project-item">
+            <h2>@Model.Name</h2>
+            <p><strong>Description:</strong> @Model.Description</p>
+            <p><strong>Due Date:</strong> @Model.DueDate?.ToString("yyyy-MM-dd")</p>
+        </div>
+
+        <h3>Tasks</h3>
+        @if (Model != null && Model.Tasks != null && Model.Tasks.Any())
+        {
+            <ul class="project-details">
+                @foreach (var task in Model.Tasks)
+                {
+                    <li class="task-item">
+                        <strong>@task.Name</strong><br />
+                        <em>@task.Description</em><br />
+                        <strong>Due Date:</strong> @task.DueDate?.ToString("yyyy-MM-dd")
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No tasks available for this project.</p>
+        }
+
+        <!-- Form for deleting the project -->
+        <form method="post" action="@Url.Action("DeleteProject", "Project", new { projectId = Model.Id })" onsubmit="return confirm('Are you sure you want to delete this project and all its tasks?');">
+            <button type="submit" class="btn-delete">Delete Project</button>
+        </form>
+
+        <a href="@Url.Action("Projects", "Project")" class="btn-back">Back to Projects</a>
+    </main>
+</body>
+</html>

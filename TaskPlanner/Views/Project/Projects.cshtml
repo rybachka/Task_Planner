@@ -1,0 +1,163 @@
+@model IEnumerable<TaskPlanner.Models.Project>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Projects</title>
+    <link rel="stylesheet" href="~/css/login.css">
+    <style>
+        /* Styl paska przewijania */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        /* Styl tła paska przewijania */
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        /* Styl uchwytu paska przewijania */
+        ::-webkit-scrollbar-thumb {
+            background: #ce80ff66;
+            border-radius: 4px;
+        }
+
+        /* Styl uchwytu paska po najechaniu */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #007bff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to bottom, #ce80ff66, #5b3aaec3);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+            max-height: 80vh;
+            margin-top: 50px;
+        }
+
+        body {
+            margin-top: 0px;
+        }
+
+        .project-item {
+            text-align: left;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .project-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-item h2 {
+            text-align: left; /* Tytuł do lewej */
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .btn-details {
+            display: inline-block;
+            margin-top: 10px;
+            color: #4a4a4a;
+        }
+
+        .btn-done {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-done:hover {
+            background-color: #73da89;
+        }
+
+        main.container {
+            padding-top: 20px;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .no-projects-message {
+            text-align: center;
+            font-size: 18px;
+            color: #999;
+
+         .btn-return {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 10px;
+            background-color: #ff0000;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-return:hover {
+            background-color: #0056b3;
+        }
+        
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Your Projects</h1>
+        </header>
+
+        @if (!Model.Any())
+        {
+            <p class="no-projects-message">You don't have any projects yet.</p>
+        }
+        else
+        {
+            <ul class="project-list">
+                @foreach (var project in Model)
+                {
+                    <li class="project-item">
+                        <form method="post" action="@Url.Action("UpdateProjectCompletion", "Projects")">
+                            <h2>@project.Name</h2>
+                            @if (!project.IsCompleted)
+                            {
+                                <button type="submit" class="btn-done">Done</button>
+                            }
+                            else
+                            {
+                                <span>Done</span>
+                            }
+                            <input type="hidden" name="ProjectId" value="@project.Id" />
+                        </form>
+                        <p>@project.Description</p>
+                        <p><strong>ID</strong> @(project.Id)</p>
+                        <p><strong>Due Date:</strong> @(project.DueDate.HasValue ? project.DueDate.Value.ToString("yyyy-MM-dd") : "No Due Date")</p>
+                        <p><strong>Status:</strong> @(project.IsCompleted ? "Completed" : "In Progress")</p>
+                        <a href="@Url.Action("Details", "Projects", new { id = project.Id })" class="btn btn-details">View Details</a>
+                    </li>
+                }
+            </ul>
+        }
+
+        <footer>
+            <a href="@Url.Action("Create", "Projects")" class="btn btn-primary">Create New Project</a>
+             <a href="@Url.Action("Home", "Home")" class="btn btn-return">Return to Home</a>
+        </footer>
+    </main>
+</body>
+</html>

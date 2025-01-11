@@ -1,0 +1,108 @@
+@model UserProfile
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="~/css/login.css"> <!-- Link do stylu -->
+    <style>
+        /* Dodajemy wyróżnienie tekstu "Edit Profile details" */
+    
+         .highlighted {
+            color: #ffffff; /* Kolor pomarańczowy */
+            font-size: 1.6rem; /* Powiększenie tekstu */
+            font-weight: bold;
+            text-shadow: 
+                -0.8px -0.8px 0 #a312e7,  /* Cień w górnym lewym rogu */
+                0.8px -0.8px 0 #a312e7,   /* Cień w górnym prawym rogu */
+                -0.8px 0.8px 0 #a312e7,   /* Cień w dolnym lewym rogu */
+                0.8px 0.8px 0 #a312e7;    /* Cień w dolnym prawym rogu */
+        }
+
+        /* Wyrównanie tekstu do lewej */
+        .profile-details p {
+            text-align: left;
+            margin-left: 10px; /* Odsunięcie od lewej strony */
+        }
+            .btn-return {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #FFFFFF; /* Kolor tekstu */
+            background-color: #7057ff; /* Zielony */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn-return:hover {
+            background-color: #9b8af9; /* Ciemniejszy zielony na hover */
+        }
+        .btn-save {
+            display: block;
+            margin: 0 auto 0px auto; 
+            margin-top: 10px;/* Wyśrodkowanie i odstęp na dole */
+            padding: 10px 30px;
+            font-size: 1.2rem;
+            color: #FFFFFF;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+
+        .btn-save:hover {
+            background-color: #0056b3; /* Ciemniejszy niebieski na hover */
+        }
+    </style>
+</head>
+<body>
+    <main class="form-container">
+        <h2>ClarityHub</h2>
+        <p class="tagline">Bringing Clarity to Your Day, One Task at a Time!</p>
+        <h1>Profile details</h1>
+
+        <!-- Wyświetlanie komunikatów o błędach -->
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <div class="profile-details">
+        <!-- Wyświetlanie danych profilu -->
+            <p><strong>First Name:</strong> @(!string.IsNullOrEmpty(Model.FirstName) ? Model.FirstName : "pusto")</p>
+            <p><strong>Last Name:</strong> @(!string.IsNullOrEmpty(Model.LastName) ? Model.LastName : "pusto")</p>
+        </div>
+        <p class="highlighted">Edit Profile details:</p>
+        <form method="post" asp-action="Profile">
+            <div class="form-group">
+                <label for="FirstName" class="control-label">First Name:</label>
+                <input type="text" name="FirstName" id="FirstName" class="form-control" value="@Model.FirstName" />
+            </div>
+            <div class="form-group">
+                <label for="LastName" class="control-label">Last Name:</label>
+                <input type="text" name="LastName" id="LastName" class="form-control" value="@Model.LastName" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-save">Save</button>
+            </div>
+        </form>
+        <a href="javascript:history.back()" class="btn-return">Return</a>
+    </main>
+</body>
+</html>

@@ -9,31 +9,55 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TaskPlanner
 build_property.RootNamespace = TaskPlanner
-build_property.ProjectDir = /Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/
+build_property.ProjectDir = /Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner
+build_property.MSBuildProjectDirectory = /Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/mariiarybak/Desktop/Uni/Sem5/C\#/PRO/Task_Planner/TaskPlanner/Views/Account/Login.cshtml]
+[/Users/mariiarybak/Desktop/C\#/untitled folder/Task_Planner/TaskPlanner/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/mariiarybak/Desktop/Uni/Sem5/C\#/PRO/Task_Planner/TaskPlanner/Views/Account/Register.cshtml]
+[/Users/mariiarybak/Desktop/C\#/untitled folder/Task_Planner/TaskPlanner/Views/Account/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Qcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mariiarybak/Desktop/C\#/untitled folder/Task_Planner/TaskPlanner/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9SZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/mariiarybak/Desktop/Uni/Sem5/C\#/PRO/Task_Planner/TaskPlanner/Views/Home/Home.cshtml]
+[/Users/mariiarybak/Desktop/C\#/untitled folder/Task_Planner/TaskPlanner/Views/Home/Home.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Ib21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/mariiarybak/Desktop/Uni/Sem5/C\#/PRO/Task_Planner/TaskPlanner/Views/Shared/_Layout.cshtml]
+[/Users/mariiarybak/Desktop/C\#/untitled folder/Task_Planner/TaskPlanner/Views/Project/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdC9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mariiarybak/Desktop/C\#/untitled folder/Task_Planner/TaskPlanner/Views/Project/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdC9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mariiarybak/Desktop/C\#/untitled folder/Task_Planner/TaskPlanner/Views/Project/Projects.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdC9Qcm9qZWN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mariiarybak/Desktop/C\#/untitled folder/Task_Planner/TaskPlanner/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/mariiarybak/Desktop/Uni/Sem5/C\#/PRO/Task_Planner/TaskPlanner/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/Users/mariiarybak/Desktop/C\#/untitled folder/Task_Planner/TaskPlanner/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mariiarybak/Desktop/C\#/untitled folder/Task_Planner/TaskPlanner/Views/Tasks/TaskDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGFza3MvVGFza0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mariiarybak/Desktop/C\#/untitled folder/Task_Planner/TaskPlanner/Views/Tasks/Tasks.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGFza3MvVGFza3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

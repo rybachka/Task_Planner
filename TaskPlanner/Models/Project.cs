@@ -1,11 +1,18 @@
-namespace TaskPlanner.Models // Zmienna nazwa namespace na odpowiednią
+using System;
+using System.Collections.Generic;
+
+namespace TaskPlanner.Models
 {
     public class Project
     {
-        public int Id { get; set; }
-        public required string Name { get; set; }
-        public required string Description { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public Guid Id { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public DateTime? DueDate { get; set; }
+        public bool IsCompleted { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+        // Lista zadań przypisanych do projektu
+        public List<TaskItem>? Tasks { get; set; }
     }
 }

@@ -1,0 +1,105 @@
+@model IEnumerable<TaskPlanner.Models.TaskItem>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Tasks</title>
+    <link rel="stylesheet" href="~/css/login.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to bottom, #ce80ff66, #5b3aaec3);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+            max-height: 80vh;
+            margin-top: 50px;
+        }
+
+        .task-item {
+            text-align: left;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-item h2 {
+            text-align: left;
+        }
+
+        .btn-details {
+            display: inline-block;
+            margin-top: 10px;
+            color: #4a4a4a;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .no-tasks-message {
+            text-align: center;
+            font-size: 18px;
+            color: #999;
+        }
+
+        .btn-return {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 10px;
+            background-color: #ff0000;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-return:hover {
+            background-color: #0056b3;
+        }
+        
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Your Tasks</h1>
+        </header>
+
+        @if (!Model.Any())
+        {
+            <p class="no-tasks-message">You don't have any tasks yet.</p>
+        }
+        else
+        {
+            <ul class="task-list">
+                @foreach (var task in Model)
+                {
+                    <li class="task-item">
+                        <h2>@task.Name</h2>
+                        <p>Project: @task.ProjectName</p>
+                        <p>Status: @(task.IsCompleted ? "Completed" : "In Progress")</p>
+                        <p>Due Date: @(task.DueDate.HasValue ? task.DueDate.Value.ToString("yyyy-MM-dd") : "No Due Date")</p>
+                        <a href="@Url.Action("Details", "Tasks", new { id = task.Id })" class="btn btn-details">View Task Details</a>
+                    </li>
+                }
+            </ul>
+        }
+
+        <footer>
+            <a href="@Url.Action("Home", "Home")" class="btn btn-return">Return to Home</a>
+        </footer>
+    </main>
+</body>
+</html>

@@ -3,6 +3,7 @@ using Npgsql;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TaskPlanner.Data;
+using TaskPlanner.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,8 +32,17 @@ builder.Services.AddTransient<ProjectRepository>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-var app = builder.Build();
+// Rejestracja Npgsql DataSource i Mapowanie Composite
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+var dataSourceBuilder = new NpgsqlDataSourceBuilder(connectionString);
+dataSourceBuilder.MapComposite<TaskRecord>("task_record");
+var dataSource = dataSourceBuilder.Build();
+
+builder.Services.AddSingleton(dataSource);
+ // PRZENIESIONE TUTAJ
+
+var app = builder.Build();
 
 // Dodanie plików statycznych i routingu
 app.UseStaticFiles();
@@ -45,41 +55,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthentication(); // Obsługa logowania
+app.UseAuthentication(); 
 app.UseHttpsRedirection();
-app.UseAuthorization();  // Obsługa autoryzacji
+app.UseAuthorization(); 
 app.MapRazorPages();
 app.MapControllers();
 app.MapDefaultControllerRoute();
 
 
-
-
-
-// Przykładowy kod do testowania
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

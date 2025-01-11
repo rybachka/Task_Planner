@@ -1,7 +1,11 @@
 @{
+    var projects = ViewBag.Projects as IEnumerable<TaskPlanner.Models.Project>;
+    var tasks = ViewBag.Tasks as IEnumerable<TaskPlanner.Models.TaskItem>;
+    var tasksForToday = ViewBag.TasksForToday as IEnumerable<TaskPlanner.Models.TaskItem>;
     bool isAuthenticated = User?.Identity?.IsAuthenticated == true;
-    string userEmail = User?.Identity?.Name ?? "Guest"; // Jeśli Name jest null, użyje "Guest"
+    string userEmail = User?.Identity?.Name ?? "Guest";
 }
+
 @{
     Layout = "_Layout";
 }
@@ -10,27 +14,130 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ClarityHub - Home</title>
-    <link rel="stylesheet" href="~/css/home.css">
+    <style>
+        /* Ustawienia dla pełnego tła */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #3a5dab, #7f5cd6);
+            color: #fff;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        /* Nagłówek */
+        header {
+            background: linear-gradient(to right, #a675ff, #5b99ff);
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Nawigacja */
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .profile-icon {
+            font-size: 1.5em;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .highlight {
+            color: #f0a6ff;
+        }
+
+        .tagline {
+            font-style: italic;
+            margin-top: 5px;
+            font-size: 1.2em;
+            color: #f9e3ff;
+        }
+
+        /* Sekcja kart */
+        .content {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            width: 250px;
+            height: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: left; /* Align text to the left */
+        }
+
+        h2 {
+            font-size: 1.5em;
+            color: #f9e3ff;
+        }
+
+        /* Style for the project list inside the card */
+        .card ul {
+            list-style-type: none;  /* Removes bullet points */
+            padding: 0;
+            margin: 0;
+        }
+
+        .card li {
+            padding: 5px 0;
+        }
+
+        .card li a {
+            color: white;  /* Change text color to white */
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block; /* Make the link block-level to make it align to left */
+        }
+
+        .card li a:hover {
+            text-decoration: underline;
+        }
+
+        .completed {
+            color: #8df6a5;  /* Green color for "Completed" */
+            margin-left: 10px; /* Optional: adds some space between project name and "Completed" text */
+        }
+
+    </style>
 </head>
 <body>
-  @* <!-- <header>
-    <nav>
-        <a href="/Home">Home</a>
-        <a href="/Projects">Projects</a>
-        <a href="/Tasks">Tasks</a>
-        <a href="/Calendar">Calendar</a>
-        <a href="/Contacts">Contacts</a>
-        <a href="/Account/Login" class="profile-icon">👤</a> <!-- Link do logowania -->
-    </nav>
-    </header>*@
-
     <main>
         <h1>Welcome to <span class="highlight">ClarityHub</span></h1>
         <p class="tagline">Bringing Clarity to Your Day, One Task at a Time!</p>
 
-        <!-- Sprawdzenie stanu zalogowania użytkownika -->
         <p style="text-align: center; color: #d48ac5; font-size: 1.1em;">
             @if (isAuthenticated)
             {
@@ -41,16 +148,84 @@
                 <span>You are not logged in</span>
             }
         </p>
-        
+
         <div class="content">
+            <!-- My Projects Card -->
             <div class="card">
                 <h2>My projects:</h2>
+                @if (projects != null && projects.Any())
+                {
+                    <ul>
+                        @foreach (var project in projects.Select((value, index) => new { index, value }))
+                        {
+                            <li>
+                                <a href="@Url.Action("Details", "Project", new { id = project.value.Id })">
+                                    <strong>@(project.index + 1). @project.value.Name</strong>
+                                    @if (project.value.IsCompleted)
+                                    {
+                                        <span class="completed">Completed</span>
+                                    }
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No projects available.</p>
+                }
             </div>
+
+            <!-- My Tasks Card -->
             <div class="card">
                 <h2>My tasks:</h2>
+                @if (tasks != null && tasks.Any())
+                {
+                    <ul>
+                        @foreach (var task in tasks.Select((value, index) => new { index, value }))
+                        {
+                            <li>
+                                <a href="@Url.Action("Details", "Tasks", new { id = task.value.Id })">
+                                    <strong>@(task.index + 1). @task.value.Name</strong>
+                                    @if (task.value.IsCompleted)
+                                    {
+                                        <span class="completed">Completed</span>
+                                    }
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No tasks available.</p>
+                }
             </div>
-            <div class="card">
+
+            <!-- To do today Card -->
+             <div class="card">
                 <h2>To do today:</h2>
+                @if (tasksForToday != null && tasksForToday.Any())
+                {
+                    <ul>
+                        @foreach (var task in tasksForToday.Select((value, index) => new { index, value }))
+                        {
+                            <li>
+                                <a href="@Url.Action("Details", "Tasks", new { id = task.value.Id })">
+                                    <strong>@(task.index + 1). @task.value.Name</strong>
+                                    @if (task.value.IsCompleted)
+                                    {
+                                        <span class="completed">Completed</span>
+                                    }
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>There are no tasks for today.</p>
+                }
             </div>
         </div>
     </main>

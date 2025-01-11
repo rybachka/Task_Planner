@@ -1,0 +1,144 @@
+@model TaskPlanner.Models.TaskItem
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Details</title>
+    <link rel="stylesheet" href="~/css/login.css">
+    <style>
+        .task-item {
+            text-align: left;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .task-details {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-details h2 {
+            text-align: center;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 15px;
+            color: #4a4a4a;
+            text-decoration: none;
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .btn-complete {
+            display: inline-block;
+            margin-top: 15px;
+            color: white;
+            background-color: #28a745;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-complete:hover {
+            background-color: #73da89;
+        }
+
+        .btn-revert {
+            display: inline-block;
+            margin-top: 15px;
+            color: white;
+            background-color: #dc3545;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-revert:hover {
+            background-color: #ff6f6f;
+        }
+
+        .btn-delete {
+            display: inline-block;
+            margin-top: 15px;
+            color: white;
+            background-color: #dc3545;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-delete:hover {
+            background-color: #ff6f6f;
+        }
+
+        .btn-save {
+            display: inline-block;
+            margin-top: 15px;
+            color: white;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-save:hover {
+            background-color: #5a98da;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Task Details</h1>
+        </header>
+
+        <div class="task-item">
+            <h2>@Model.Name</h2>
+            <p><strong>Description:</strong> @Model.Description</p>
+            <p><strong>Project Name:</strong> @Model.ProjectName</p>
+            <p><strong>Due Date:</strong> @(Model.DueDate.HasValue ? Model.DueDate.Value.ToString("yyyy-MM-dd") : "No Due Date")</p>
+            <p><strong>Status:</strong> @(Model.IsCompleted ? "Completed" : "In Progress")</p>
+
+            <!-- Form to edit task description and due date -->
+            <form method="post" action="@Url.Action("EditTask", "Tasks", new { taskId = Model.Id })">
+                <div>
+                    <label for="description">Task Description:</label>
+                    <input type="text" id="description" name="description" value="@Model.Description" required />
+                </div>
+                <div>
+                    <label for="duedate">Due Date:</label>
+                    <input type="date" id="duedate" name="duedate" value="@Model.DueDate?.ToString("yyyy-MM-dd")" />
+                </div>
+                <button type="submit" class="btn-save">Save Changes</button>
+            </form>
+
+            @if (!Model.IsCompleted)
+            {
+                <form method="post" action="@Url.Action("CompleteTask", "Tasks", new { taskId = Model.Id })">
+                    <button type="submit" class="btn-complete">Mark as Completed</button>
+                </form>
+            }
+            else
+            {
+                <form method="post" action="@Url.Action("RevertTaskCompletion", "Tasks", new { taskId = Model.Id })">
+                    <button type="submit" class="btn-revert">Mark as Not Completed</button>
+                </form>
+            }
+
+            <!-- Delete Task Button -->
+            <form method="post" action="@Url.Action("DeleteTask", "Tasks", new { taskId = Model.Id })">
+                <button type="submit" class="btn-delete">Delete Task</button>
+            </form>
+        </div>
+
+        <a href="@Url.Action("Tasks", "Tasks")" class="btn-back">Back to Task List</a>
+    </main>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "t8pld16RDZaW0jCkBWaw2xnRcDdmpoE30mlwvdBVigY=",
+  "Hash": "RcvP94ZJJfRkeKRKjzzvTYkTVqadiMnG1Uy0yqJBgDA=",
   "Source": "TaskPlanner",
   "BasePath": "_content/TaskPlanner",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "TaskPlanner/wwwroot",
       "Source": "TaskPlanner",
-      "ContentRoot": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/",
+      "ContentRoot": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/",
       "BasePath": "_content/TaskPlanner",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/css/home.css",
+      "Identity": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/css/home.css",
       "SourceId": "TaskPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/",
+      "ContentRoot": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/",
       "BasePath": "_content/TaskPlanner",
       "RelativePath": "css/home.css",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot/css/home.css"
     },
     {
-      "Identity": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/css/login.css",
+      "Identity": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/css/login.css",
       "SourceId": "TaskPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/",
+      "ContentRoot": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/",
       "BasePath": "_content/TaskPlanner",
       "RelativePath": "css/login.css",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot/css/login.css"
     },
     {
-      "Identity": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/css/register.css",
+      "Identity": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/css/register.css",
       "SourceId": "TaskPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/",
+      "ContentRoot": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/",
       "BasePath": "_content/TaskPlanner",
       "RelativePath": "css/register.css",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot/css/register.css"
     },
     {
-      "Identity": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/css/site.css",
+      "Identity": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/css/site.css",
       "SourceId": "TaskPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/",
+      "ContentRoot": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/",
       "BasePath": "_content/TaskPlanner",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot/css/site.css"
     },
     {
-      "Identity": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/index.html",
+      "Identity": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/index.html",
       "SourceId": "TaskPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/",
+      "ContentRoot": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/",
       "BasePath": "_content/TaskPlanner",
       "RelativePath": "index.html",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot/index.html"
     },
     {
-      "Identity": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/script.js",
+      "Identity": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/script.js",
       "SourceId": "TaskPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/",
+      "ContentRoot": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/",
       "BasePath": "_content/TaskPlanner",
       "RelativePath": "script.js",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot/script.js"
     },
     {
-      "Identity": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/styles.css",
+      "Identity": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/styles.css",
       "SourceId": "TaskPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/mariiarybak/Desktop/Uni/Sem5/C#/PRO/Task_Planner/TaskPlanner/wwwroot/",
+      "ContentRoot": "/Users/mariiarybak/Desktop/C#/untitled folder/Task_Planner/TaskPlanner/wwwroot/",
       "BasePath": "_content/TaskPlanner",
       "RelativePath": "styles.css",
       "AssetKind": "All",
